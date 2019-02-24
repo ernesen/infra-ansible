@@ -1,0 +1,20 @@
+---
+- name: Installing NFS Client 
+  hosts: nfs-clients
+  become: true
+  
+  vars:
+    nfsserver: 192.168.99.150
+    nfs_mountpoint: /nfs
+    nfsexport: /share
+
+  tasks:
+    - name: Ensure NFS common is installed.
+      apt: name=nfs-common state=present update_cache=yes
+
+    - name: Create mountable dir
+      file: path={{ nfs_mountpoint }} state=directory mode=777 owner=root group=root
+
+    - name: set mountpoints
+      mount: name={{ nfs_mountpoint }} src={{ nfsserver }}:{{ nfsexport }} fstype=nfs opts=defaults,nobootwait dump=0 passno=2 state=mounted
+

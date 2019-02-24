@@ -1,0 +1,53 @@
+---
+- name: Install Docker
+  hosts: docker
+  become: true
+
+  vars:
+    ansible_distribution_release: trusty
+    theuser: vagrant
+
+  tasks:
+  - name: Ensure old versions of Docker are not installed.
+    package:
+      name:
+      - docker
+      - docker-engine
+      state: absent
+
+  - name: Install list of packages
+    package:
+      name:    
+      - apt-transport-https
+      - ca-certificates
+      - software-properties-common
+      state: latest 
+      update_cache: yes
+      
+  - name: APT - Add Docker GPG key
+    apt_key: 
+      keyserver: keyserver.ubuntu.com 
+      id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+      
+  - name: Add Docker APT repository
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+
+  - name: Install Docker CE
+    apt:
+      name: docker-ce
+      state: present
+      update_cache: yes
+      
+  - name: add docker goup
+    user:
+      name: "{{ theuser }}"
+      append: yes
+      groups: docker
+      
+  handlers:
+  - name: Restart Docker
+    systemd:
+      name: docker
+      state: restarted
+      
