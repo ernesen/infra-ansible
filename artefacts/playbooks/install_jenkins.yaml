@@ -1,5 +1,3 @@
-# How to install Jenkins using Ansible Version 2018
-# https://awsbloglink.wordpress.com/2018/10/08/how-to-install-jenkins-using-ansible-version-2018/
 ---
 - name: Install Jenkins
   hosts: jenkins
