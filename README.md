@@ -680,6 +680,7 @@ A well implemented DevOps (development & operations) process should mean deliver
 **FIGURE 5: Jenkins Installed software**
 
 ![Current Docker version ](./images/image-01-06.png)
+
 **FIGURE 6: Current Docker version**
 
 ## Putting it all together
