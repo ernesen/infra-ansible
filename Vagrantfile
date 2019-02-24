@@ -1,5 +1,3 @@
-# http://sysadm.pp.ua/linux/sistemy-virtualizacii/vagrantfile.html
-
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 # Use config.yaml for basic VM configuration.
