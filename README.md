@@ -685,9 +685,11 @@ A well implemented DevOps (development & operations) process should mean deliver
 
 ## Putting it all together
 
-git clone https://github.com/ernesen/infra-ansible.git
+Issue the command below to start the automated process; depending on your server the provisioning time is in the order of 75-90 minutes for this demo to work as planned, the specifications required are 16 GB RAM and 250 GB of HDD.
 
 ```sh 
+git clone https://github.com/ernesen/infra-ansible.git
+cd infra-ansible
 vagrant up --provider=virtualbox
 ```
 
